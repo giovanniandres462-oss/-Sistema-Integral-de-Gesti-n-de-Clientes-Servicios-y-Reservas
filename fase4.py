@@ -11,4 +11,14 @@ import re
 #clases derivadas 
 class logger :
   ARCHIVO = "errores_y_eventos.log"
-  
+  staticmethod
+    def registrar(mensaje, nivel="INFORMCION"):
+        linea = f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] [{nivel}] {mensaje}\n"
+        try:
+            with open(Logger.ARCHIVO, "a", encoding="utf-8") as f:
+                f.write(linea)
+        except OSError as e:
+            print(f"No se pudo escribir log: {e}")
+        finally:
+            
+            print(linea.strip())
