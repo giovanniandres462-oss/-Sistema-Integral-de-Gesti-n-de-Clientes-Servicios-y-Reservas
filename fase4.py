@@ -22,3 +22,21 @@ class logger :
         finally:
             
             print(linea.strip())
+#Excepciones personalizados 
+class ErrorsistemaFJ(Exception):
+    pass
+
+class datosInvalidosError(ErrorsistemaFJ):
+    pass
+
+class ParametrofaltanteError(ErrorsistemaFJ):
+    pass
+class servicioNoDisponibleError(ErrorsistemaFJ):
+    pass
+class ReservaIncorrectaError(ErrorsistemaFJ):
+    pass
+class OperacionNoPermitidaError(ErrorsistemaFJ):
+    pass
+class CalculoIncosistenteError(ErrorsistemaFJ):
+    pass
+  
