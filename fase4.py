@@ -39,4 +39,80 @@ class OperacionNoPermitidaError(ErrorsistemaFJ):
     pass
 class CalculoIncosistenteError(ErrorsistemaFJ):
     pass
+#clases abstractas 
+
+class Entidad(ABC):
+    def __init__(self, identidad: int):
+        if not isinstance(identidad, int) or identidad <= 0:
+            raise datosInvalidosError(f"ID invalido: {identidad}")
+        self._identidad
+        self._fecha_creacion = datetime.now()
+
+    property
+    def id(self):
+        return self.__id
+    abstractmethod
+    def describir(self):
+        pass
+    abstractmethod
+    def validar(self):
+        pass
+    def __str__(self):
+        return self.describir()
+
+#clase de cliente
+class Cliente(Entidad):
+    def __int__(self, id_cliente, nombre, correo, telefono, documento):
+        super().__init__(id_cliente)
+        self.nombre = nombre
+        self.correo = correo
+        self.telefono = telefono
+        self.documento = documento
+        self.validar()
+
+    property
+    def nombre(self):
+        return self._nombre
+
+    nombre.setter
+    def nombre(self,valor):
+        if not valor or len(str(valor).strip())< 3:
+            raise datosInvalidosError("El nombre debe tener minimo 3 caracteres")
+        self._nombre = str(valor).strip().tittle()
+
+    property
+    def correo(self):
+        return self.correo
+
+    correo.setter
+    def correo(self, valor):
+        if not valor or  "@" not in str(valor) or "." not in str(valor):
+            raise datosInvalidosError("Correo invalido:" +str(valor))
+        self._correo = str(valor).strip().lower()
+
+    property
+    def telefono(self):
+        return self._telefono
+
+    telefono.setter
+    def telefono(self, valor):
+        if not re.match(r"^/d{10,10}$", str(valor)):
+            raise datosInvalidosError("telefono debe tener de 10 digitos ")
+        self._telefono = str(valor)
+
+    property
+    def docuemnto(self):
+        return self._documento
+
+    docuemnto.setter
+    def documento(self, valor):
+        if not re.match(r"^/d{8,12}$", str(valor)):
+            raise datosInvalidosError("Documentos debe tener de 8 a 12 digitos")
+        self._documento = str(valor)
+
+    def validar(self):
+        return True
+
+    def describir(self):
+        return"Cliente #"
   
