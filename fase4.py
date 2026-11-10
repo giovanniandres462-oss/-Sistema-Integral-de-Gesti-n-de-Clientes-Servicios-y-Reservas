@@ -115,4 +115,48 @@ class Cliente(Entidad):
 
     def describir(self):
         return"Cliente #"
-  
+   # clase abstracta servicio
+    
+class Servicio(Entidad):
+    def __init__(self, id_servicio, nombre, precio_base, disponible=True):
+        super().__init__(id_servicio)
+        if precio_base is None:
+            raise ParametrofaltanteError("falta de precio base del servicio")
+        if precio_base < 0:
+            raise datosInvalidosError("El precio no puede ser negativo")
+        self._nombre = nombre 
+        self._precio_base = float(precio_base)
+        self._disponible = bool(disponible)
+
+    property
+    def nombre(self):
+        return self._nombre
+
+    property
+    def precio_base(self):
+        return self._precio_base
+
+    property
+    def disponible(self):
+        return self._disponible
+
+    disponible.setter
+    def disponible(self, valor):
+        self._disponible = bool(valor)
+
+    abstractmethod
+    def calcular_costo(self, args, kwargs):
+        pass
+
+    abstractmethod
+    def validar_parametros(self,args,kwargs):
+        pass
+    def validar(self):
+        return self._precio_base >= 0 and bool(self._nombre)
+    def describir(self):
+        if self._disponible:
+            estado = "Disponible"
+        else:
+            estado = "No disponible"
+        return "servicio #"
+
